@@ -1,5 +1,5 @@
 ;;;; cl-bridges.asd - Cross-Chain Bridge Protocols for Common Lisp
-;;;; Standalone extraction from CLPIC
+;;;; Standalone extraction from Parkian
 
 (defsystem "cl-bridges"
   :name "cl-bridges"
