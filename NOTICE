@@ -1,0 +1,36 @@
+cl-bridges - Cross-Chain Bridge Protocols for Common Lisp
+Copyright (c) 2024-2026 CLPIC Contributors
+
+This project is licensed under the MIT License. See LICENSE for details.
+
+================================================================================
+ACKNOWLEDGMENTS
+================================================================================
+
+Original Implementation
+-----------------------
+This library was extracted from the CLPIC (Common Lisp P2P Intellectual Property
+Chain) project. The bridge protocols implement cross-chain communication patterns
+based on established blockchain interoperability standards.
+
+Cryptographic Algorithms
+------------------------
+- SHA-256: FIPS 180-4 (NIST)
+  Pure Common Lisp implementation with no external dependencies.
+
+Cross-Chain Standards
+---------------------
+- IBC (Inter-Blockchain Communication): Cosmos network standard
+- Light Client Protocols: Ethereum 2.0 Altair, Tendermint/CometBFT
+- Merkle Proofs: Standard binary Merkle tree verification
+- HTLC (Hash Time-Locked Contracts): Atomic swap pattern
+
+================================================================================
+NO WARRANTY
+================================================================================
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
+
+The cryptographic implementations in this library are for educational and
+development purposes. For production use, consider security audits and
+formal verification of critical paths.
