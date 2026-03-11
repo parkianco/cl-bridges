@@ -46,9 +46,11 @@
                      (finality-confirmations c) (finality-required c)))))
 
 (define-condition delivery-failed-error (messaging-error)
-  ((attempts :initarg :attempts :reader delivery-attempts))
+  ((attempts :initarg :attempts :reader delivery-attempts)
+   (last-error :initarg :last-error :reader delivery-last-error :initform nil))
   (:report (lambda (c s)
-             (format s "Delivery failed after ~A attempts" (delivery-attempts c)))))
+             (format s "Delivery failed after ~A attempts~@[: ~A~]"
+                     (delivery-attempts c) (delivery-last-error c)))))
 
 (define-condition sequence-error (messaging-error)
   ((expected :initarg :expected :reader sequence-expected)
@@ -221,7 +223,7 @@
 (defun deserialize-message (bytes)
   "Deserialize message from bytes."
   (let ((offset 0))
-    (flet ((read-byte ()
+    (flet ((get-byte ()
              (prog1 (aref bytes offset)
                (incf offset)))
            (read-bytes (n)
@@ -232,7 +234,7 @@
                  (deserialize-varint bytes offset)
                (incf offset consumed)
                val)))
-      (let* ((version (read-byte))
+      (let* ((version (get-byte))
              (source-len (read-varint))
              (source (map 'string #'code-char (read-bytes source-len)))
              (dest-len (read-varint))

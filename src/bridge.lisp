@@ -7,7 +7,8 @@
 ;;; Version and Constants
 ;;; ============================================================================
 
-(defconstant +version+ "1.0.0"
+;; Use defvar to avoid SBCL DEFCONSTANT-UNEQL on string reload
+(defvar +version+ "1.0.0"
   "cl-bridges version.")
 
 (defparameter *default-finality-depth* 12
