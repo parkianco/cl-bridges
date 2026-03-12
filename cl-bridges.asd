@@ -37,4 +37,6 @@
                 :serial t
                 :components ((:file "test-bridges"))))
   :perform (test-op (op c)
-             (uiop:symbol-call :cl-bridges.test :run-tests)))
+             (let ((result (uiop:symbol-call :cl-bridges.test :run-tests)))
+               (unless result
+                 (error "Tests failed")))))
