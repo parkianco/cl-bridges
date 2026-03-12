@@ -129,7 +129,7 @@
     (loop for i from 0 below 64
           for t1 = (logand #xffffffff
                            (+ hh (sigma1-256 e) (ch32 e f g)
-                              (aref +sha256-k+ i) (aref w i)))
+                              (aref *sha256-k* i) (aref w i)))
           for t2 = (logand #xffffffff (+ (sigma0-256 a) (maj32 a b c)))
           do (psetf hh g
                     g f
