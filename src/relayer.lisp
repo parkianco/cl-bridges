@@ -157,8 +157,8 @@
 
 (defun deliver-message (relayer message proof)
   "Directly deliver a message (bypassing queue)."
-  (let ((dest-chain (message-dest-chain message))
-        (handler (gethash dest-chain (relayer-delivery-handlers relayer))))
+  (let* ((dest-chain (message-dest-chain message))
+         (handler (gethash dest-chain (relayer-delivery-handlers relayer))))
     (if handler
         (funcall handler message proof)
         (error 'chain-unavailable-error :chain-id dest-chain))))
