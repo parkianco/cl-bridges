@@ -1,9 +1,12 @@
+;; Copyright (c) 2024-2026 Parkian Company LLC. All rights reserved.
+;; SPDX-License-Identifier: BSD-3-Clause
+
 ;;;; cl-bridges.asd - Cross-Chain Bridge Protocols for Common Lisp
 ;;;; Standalone extraction from Parkian
 
-(defsystem "cl-bridges"
+(asdf:defsystem #:"cl-bridges"
   :name "cl-bridges"
-  :version "1.0.0"
+  :version "0.1.0"
   :author "Parkian Company LLC"
   :license "MIT OR Apache-2.0"
   :description "Cross-chain bridge protocols: message passing, proof verification, relaying"
@@ -23,11 +26,11 @@
                              (:file "message")
                              (:file "relayer")
                              (:file "bridge"))))
-  :in-order-to ((test-op (test-op "cl-bridges/test"))))
+  :in-order-to ((asdf:test-op (test-op "cl-bridges/test"))))
 
-(defsystem "cl-bridges/test"
+(asdf:defsystem #:"cl-bridges/test"
   :name "cl-bridges-test"
-  :version "1.0.0"
+  :version "0.1.0"
   :author "Parkian Company LLC"
   :license "MIT OR Apache-2.0"
   :description "Tests for cl-bridges"
@@ -36,7 +39,7 @@
   :components ((:module "test"
                 :serial t
                 :components ((:file "test-bridges"))))
-  :perform (test-op (op c)
+  :perform (asdf:test-op (op c)
              (let ((result (uiop:symbol-call :cl-bridges.test :run-tests)))
                (unless result
                  (error "Tests failed")))))
